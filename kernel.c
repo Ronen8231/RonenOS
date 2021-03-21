@@ -3,6 +3,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "gdt.h"
+
 // First, let's do some basic checks to make sure we are using our x86-elf cross-compiler correctly
 #if defined(__linux__)
     #error "This code must be compiled with a cross compiler"
@@ -93,10 +95,15 @@ void kernel_main()
 {
     // We're here! Let's initiate the terminal and display a message to show we got here.
  
+    
     // Initiate terminal
     term_init();
  
     // Display some messages
     term_print("Hello, World!\n");
     term_print("Welcome to the kernel.\n");
+
+    initGDT();
+
+    term_print("after GDT init\n");
 }
